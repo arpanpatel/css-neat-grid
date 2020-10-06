@@ -1,0 +1,80 @@
+$grid-columns: 12;
+$grid-rows: 6;
+
+// for grid template columns
+@for $i from 1 through $grid-columns {
+  .grid-cols-#{$i} {
+    grid-template-columns: repeat($i, minmax(0, 1fr));
+  }
+}
+
+// for grid column span
+@for $i from 1 through $grid-columns {
+  .col-span-#{$i} {
+    grid-column: span $i #{'/'} span $i;
+  }
+}
+
+// for grid column start
+.col-start-auto {
+  grid-column-start: auto;
+}
+@for $i from 1 through $grid-columns {
+  .col-start-#{$i} {
+    grid-column-start: $i;
+  }
+}
+
+// for grid column end
+.col-end-auto {
+  grid-column-start: auto;
+}
+@for $i from 1 through $grid-columns {
+  .col-end-#{$i} {
+    grid-column-end: $i;
+  }
+}
+
+
+// for grid template rows
+.grid-rows-none {
+  grid-template-rows: none;
+}
+
+@for $i from 1 through $grid-rows {
+  .grid-rows-#{$i} {
+    grid-template-rows: repeat($i, minmax(0, 1fr));
+  }
+}
+
+
+// for grid row span
+.row-auto {
+  grid-row: auto;
+}
+@for $i from 1 through $grid-rows {
+  .row-span-#{$i} {
+    grid-row: span $i #{'/'} span $i;
+  }
+}
+
+// for grid column start
+.row-start-auto {
+  grid-row-start: auto;
+}
+@for $i from 1 through $grid-rows {
+  .row-start-#{$i} {
+    grid-row-start: $i;
+  }
+}
+
+// for grid column end
+.row-end-auto {
+  grid-row-start: auto;
+}
+
+@for $i from 1 through $grid-rows {
+  .row-end-#{$i} {
+    grid-row-end: $i;
+  }
+}
