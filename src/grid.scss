@@ -1,6 +1,11 @@
 $grid-columns: 12;
 $grid-rows: 6;
 
+
+.grid {
+  display: grid;
+}
+
 // for grid template columns
 @for $i from 1 through $grid-columns {
   .grid-cols-#{$i} {
