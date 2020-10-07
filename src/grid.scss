@@ -1,6 +1,4 @@
-$grid-columns: 12;
-$grid-rows: 6;
-
+@import "variables";
 
 .grid {
   display: grid;
@@ -24,6 +22,7 @@ $grid-rows: 6;
 .col-start-auto {
   grid-column-start: auto;
 }
+
 @for $i from 1 through $grid-columns {
   .col-start-#{$i} {
     grid-column-start: $i;
@@ -34,6 +33,7 @@ $grid-rows: 6;
 .col-end-auto {
   grid-column-start: auto;
 }
+
 @for $i from 1 through $grid-columns {
   .col-end-#{$i} {
     grid-column-end: $i;
@@ -57,6 +57,7 @@ $grid-rows: 6;
 .row-auto {
   grid-row: auto;
 }
+
 @for $i from 1 through $grid-rows {
   .row-span-#{$i} {
     grid-row: span $i #{'/'} span $i;
@@ -67,6 +68,7 @@ $grid-rows: 6;
 .row-start-auto {
   grid-row-start: auto;
 }
+
 @for $i from 1 through $grid-rows {
   .row-start-#{$i} {
     grid-row-start: $i;
@@ -81,5 +83,40 @@ $grid-rows: 6;
 @for $i from 1 through $grid-rows {
   .row-end-#{$i} {
     grid-row-end: $i;
+  }
+}
+
+
+
+// for grid gap
+$utilities: (
+        "gap" : (
+                property: gap,
+                class: gap,
+                value: $gaps,
+                unit: rem
+        ),
+        "row-gap" : (
+                property: row-gap,
+                class: gap-y,
+                value: $gaps,
+                unit: rem
+        ),
+        "column-gap" : (
+                property: column-gap,
+                class: gap-x,
+                value: $gaps,
+                unit: rem
+        )
+);
+
+@each $utility_property, $utility_value in $utilities {
+  $values : map-get($utility_value, value);
+  $class : map-get($utility_value, class);
+
+  @each $key, $value in $values {
+    .#{$class}-#{$key} {
+      #{$utility_property} : $value
+    }
   }
 }
