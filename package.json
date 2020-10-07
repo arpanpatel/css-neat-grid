@@ -1,6 +1,6 @@
 {
   "name": "css-neat-grid",
-  "version": "1.2.0",
+  "version": "1.3.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,8 @@
     "url": "https://github.com/arpanpatel/css-neat-grid/issues"
   },
   "homepage": "https://github.com/arpanpatel/css-neat-grid#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "gulp": "^4.0.2",
     "gulp-sass": "^4.1.0",
     "node-sass": "^4.14.1"
