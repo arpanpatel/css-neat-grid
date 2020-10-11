@@ -1,17 +1,22 @@
-$grid-columns: 12;
-$grid-rows: 6;
+$grid-columns: (columns: 12, responsive: false) !default;
+$grid-rows: (rows: 12, responsive: false) !default;
 
 $gap: 1rem !default;
 $gaps: () !default;
-// stylelint-disable-next-line scss/dollar-variable-default
-$gaps: map-merge(
-                (
-                        0: 0,
-                        1: ($gap * .25),
-                        2: ($gap * .5),
-                        3: $gap,
-                        4: ($gap * 1.5),
-                        5: ($gap * 3)
-                ),
-                $gaps
-);
+$gaps: map-merge((
+        0: 0,
+        1: ($gap * .25),
+        2: ($gap * .5),
+        3: $gap,
+        4: ($gap * 1.5),
+        5: ($gap * 3)
+), $gaps);
+
+$breakpoints: (
+        xs: 0,
+        sm: 576px,
+        md: 768px,
+        lg: 992px,
+        xl: 1200px
+) !default;
+

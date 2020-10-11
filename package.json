@@ -1,7 +1,13 @@
 {
   "name": "css-neat-grid",
-  "version": "1.3.1",
-  "description": "",
+  "version": "1.4.0",
+  "description": "css grid based on css grid specification",
+  "keywords": [
+    "css",
+    "grid",
+    "cssgrid",
+    "scss"
+  ],
   "main": "index.js",
   "scripts": {
     "start": "gulp",
@@ -20,8 +26,12 @@
   "homepage": "https://github.com/arpanpatel/css-neat-grid#readme",
   "dependencies": {},
   "devDependencies": {
+    "cssnano": "^4.1.10",
     "gulp": "^4.0.2",
+    "gulp-postcss": "^9.0.0",
+    "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.1.0",
-    "node-sass": "^4.14.1"
+    "node-sass": "^4.14.1",
+    "postcss": "^8.1.1"
   }
 }

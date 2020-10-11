@@ -1,0 +1,21 @@
+@mixin media-breakpoint($name, $breakpoints: $breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  //@debug  $min;
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin create-class($values, $css_properties, $class, $infix: null) {
+  @each $key, $value in $values {
+    .#{$infix}#{$class}-#{$key} {
+      @each $property in $css_properties  {
+        #{$property}  : $value;
+      }
+    }
+  }
+}

@@ -1,122 +1,106 @@
+@import "functions";
+@import "mixin";
 @import "variables";
 
 .grid {
   display: grid;
 }
 
-// for grid template columns
-@for $i from 1 through $grid-columns {
-  .grid-cols-#{$i} {
-    grid-template-columns: repeat($i, minmax(0, 1fr));
-  }
-}
-
-// for grid column span
-@for $i from 1 through $grid-columns {
-  .col-span-#{$i} {
-    grid-column: span $i #{'/'} span $i;
-  }
-}
-
-// for grid column start
-.col-start-auto {
-  grid-column-start: auto;
-}
-
-@for $i from 1 through $grid-columns {
-  .col-start-#{$i} {
-    grid-column-start: $i;
-  }
-}
-
-// for grid column end
-.col-end-auto {
-  grid-column-start: auto;
-}
-
-@for $i from 1 through $grid-columns {
-  .col-end-#{$i} {
-    grid-column-end: $i;
-  }
-}
-
-
-// for grid template rows
-.grid-rows-none {
-  grid-template-rows: none;
-}
-
-@for $i from 1 through $grid-rows {
-  .grid-rows-#{$i} {
-    grid-template-rows: repeat($i, minmax(0, 1fr));
-  }
-}
-
-
-// for grid row span
-.row-auto {
-  grid-row: auto;
-}
-
-@for $i from 1 through $grid-rows {
-  .row-span-#{$i} {
-    grid-row: span $i #{'/'} span $i;
-  }
-}
-
-// for grid column start
-.row-start-auto {
-  grid-row-start: auto;
-}
-
-@for $i from 1 through $grid-rows {
-  .row-start-#{$i} {
-    grid-row-start: $i;
-  }
-}
-
-// for grid column end
-.row-end-auto {
-  grid-row-start: auto;
-}
-
-@for $i from 1 through $grid-rows {
-  .row-end-#{$i} {
-    grid-row-end: $i;
-  }
-}
-
-
-
-// for grid gap
 $utilities: (
+        "grid-template-columns" : (
+                property: grid-template-columns,
+                class: grid-cols,
+                value: map-merge(('none': none),
+                        generate-grid-map(map-get($grid-columns, "columns"), "grid-template-columns")),
+                responsive: map-get($grid-columns, 'responsive')
+        ),
+        "grid-column" : (
+                property: grid-column,
+                class: col-span,
+                value: map-merge(('auto': auto), generate-grid-map(map-get($grid-columns, "columns"), "grid-column")),
+                responsive: map-get($grid-columns, 'responsive')
+        ),
+        "grid-column-start" : (
+                property: grid-column-start,
+                class: col-start,
+                value: map-merge(('auto': auto), generate-grid-map(map-get($grid-columns, "columns"))),
+                responsive: map-get($grid-columns, 'responsive')
+        ),
+        "grid-column-end" : (
+                property: grid-column-end,
+                class: col-end,
+                value: map-merge(('auto': auto), generate-grid-map(map-get($grid-columns, "columns"))),
+                responsive: map-get($grid-columns, 'responsive')
+        ),
+        "grid-template-rows" : (
+                property: grid-template-rows,
+                class: grid-rows,
+                value: map-merge(('none': none), generate-grid-map(map-get($grid-rows, "rows"), 'grid-template-rows')),
+                responsive: map-get($grid-rows, 'responsive')
+        ),
+        "grid-row" : (
+                property: grid-row,
+                class: row-span,
+                value: map-merge(('auto': auto), generate-grid-map(map-get($grid-rows, "rows"), "grid-row")),
+                responsive: map-get($grid-rows, 'responsive')
+        ),
+        "grid-row-start" : (
+                property: grid-row-start,
+                class: row-start,
+                value: map-merge(('auto': auto), generate-grid-map(map-get($grid-rows, "rows"))),
+                responsive: map-get($grid-rows, 'responsive')
+        ),
+        "grid-row-end" : (
+                property: grid-row-end,
+                class: row-end,
+                value: map-merge(('auto': auto), generate-grid-map(map-get($grid-rows, "rows"))),
+                responsive: map-get($grid-rows, 'responsive')
+        ),
         "gap" : (
-                property: gap,
+                property: grid-gap gap,
                 class: gap,
                 value: $gaps,
-                unit: rem
+                responsive: false
         ),
         "row-gap" : (
-                property: row-gap,
+                property: grid-row-gap row-gap,
                 class: gap-y,
                 value: $gaps,
-                unit: rem
+                responsive: false
         ),
         "column-gap" : (
-                property: column-gap,
+                property: grid-column-gap column-gap,
                 class: gap-x,
                 value: $gaps,
-                unit: rem
-        )
+                responsive: false
+        ),
 );
 
 @each $utility_property, $utility_value in $utilities {
-  $values : map-get($utility_value, value);
-  $class : map-get($utility_value, class);
+  //@debug '$utility_property #{$utility_property}';
+  //@debug '$utility_value #{$utility_value}';
 
-  @each $key, $value in $values {
-    .#{$class}-#{$key} {
-      #{$utility_property} : $value
-    }
+  $values: map-get($utility_value, value);
+  //@debug '$values #{$values}';
+  $class: map-get($utility_value, class);
+  $css_properties: map-get($utility_value, property);
+  $responsive: map-get($utility_value, responsive);
+
+  @if type-of($css_properties) == "string" {
+    $css_properties: append((), map-get($utility_value, property));
   }
+
+
+  @if ($responsive) {
+    @each $breakpoint in map-keys($breakpoints) {
+      @include media-breakpoint($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $breakpoints);
+        @include create-class($values, $css_properties, $class, $infix);
+      }
+    }
+  } @else {
+    @include create-class($values, $css_properties, $class);
+  }
+
 }
+

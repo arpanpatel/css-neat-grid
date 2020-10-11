@@ -1,0 +1,25 @@
+@function breakpoint-min($name, $breakpoints: $breakpoints) {
+  $min: map-get($breakpoints, $name);
+  @return if($min != 0, $min, null);
+}
+
+@function breakpoint-infix($name, $breakpoints: $breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints) == null, "", "#{$name}-");
+}
+
+@function generate-grid-map($value, $property: null) {
+  $values: ();
+  @for $i from 1 through $value {
+    @if ($property == "grid-template-columns" or $property == "grid-template-rows") {
+      $values: map-merge(
+                      $values,
+                      ($i : repeat($i, minmax(0, 1fr))),
+      );
+    } @else if ($property == "grid-column" or $property == "grid-row") {
+      $values: map-merge($values, ($i : span $i #{'/'} span $i));
+    } @else {
+      $values: map-merge($values, ($i : $i));
+    }
+  }
+  @return $values;
+}
