@@ -11,50 +11,50 @@ $utilities: (
                 property: grid-template-columns,
                 class: grid-cols,
                 value: map-merge(('none': none),
-                        generate-grid-map(map-get($grid-columns, "columns"), "grid-template-columns")),
-                responsive: map-get($grid-columns, 'responsive')
+                        generate-grid-map(map-get($grid-column-config, "columns"), "grid-template-columns")),
+                responsive: map-get($grid-column-config, 'responsive')
         ),
         "grid-column" : (
                 property: grid-column,
                 class: col-span,
-                value: map-merge(('auto': auto), generate-grid-map(map-get($grid-columns, "columns"), "grid-column")),
-                responsive: map-get($grid-columns, 'responsive')
+                value: map-merge(('auto': auto), generate-grid-map(map-get($grid-column-config, "columns"), "grid-column")),
+                responsive: map-get($grid-column-config, 'responsive')
         ),
         "grid-column-start" : (
                 property: grid-column-start,
                 class: col-start,
-                value: map-merge(('auto': auto), generate-grid-map(map-get($grid-columns, "columns"))),
-                responsive: map-get($grid-columns, 'responsive')
+                value: map-merge(('auto': auto), generate-grid-map(map-get($grid-column-config, "columns"))),
+                responsive: map-get($grid-column-config, 'responsive')
         ),
         "grid-column-end" : (
                 property: grid-column-end,
                 class: col-end,
-                value: map-merge(('auto': auto), generate-grid-map(map-get($grid-columns, "columns"))),
-                responsive: map-get($grid-columns, 'responsive')
+                value: map-merge(('auto': auto), generate-grid-map(map-get($grid-column-config, "columns"))),
+                responsive: map-get($grid-column-config, 'responsive')
         ),
         "grid-template-rows" : (
                 property: grid-template-rows,
                 class: grid-rows,
-                value: map-merge(('none': none), generate-grid-map(map-get($grid-rows, "rows"), 'grid-template-rows')),
-                responsive: map-get($grid-rows, 'responsive')
+                value: map-merge(('none': none), generate-grid-map(map-get($grid-row-config, "rows"), 'grid-template-rows')),
+                responsive: map-get($grid-row-config, 'responsive')
         ),
         "grid-row" : (
                 property: grid-row,
                 class: row-span,
-                value: map-merge(('auto': auto), generate-grid-map(map-get($grid-rows, "rows"), "grid-row")),
-                responsive: map-get($grid-rows, 'responsive')
+                value: map-merge(('auto': auto), generate-grid-map(map-get($grid-row-config, "rows"), "grid-row")),
+                responsive: map-get($grid-row-config, 'responsive')
         ),
         "grid-row-start" : (
                 property: grid-row-start,
                 class: row-start,
-                value: map-merge(('auto': auto), generate-grid-map(map-get($grid-rows, "rows"))),
-                responsive: map-get($grid-rows, 'responsive')
+                value: map-merge(('auto': auto), generate-grid-map(map-get($grid-row-config, "rows"))),
+                responsive: map-get($grid-row-config, 'responsive')
         ),
         "grid-row-end" : (
                 property: grid-row-end,
                 class: row-end,
-                value: map-merge(('auto': auto), generate-grid-map(map-get($grid-rows, "rows"))),
-                responsive: map-get($grid-rows, 'responsive')
+                value: map-merge(('auto': auto), generate-grid-map(map-get($grid-row-config, "rows"))),
+                responsive: map-get($grid-row-config, 'responsive')
         ),
         "gap" : (
                 property: grid-gap gap,
