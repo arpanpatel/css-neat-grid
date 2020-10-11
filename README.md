@@ -9,4 +9,4 @@ Install with npm
 
 Or Using CDN link
 
-`<link href="https://unpkg.com/css-neat-grid@1.4.1/dist/grid.min.css" rel="stylesheet">`
+`<link href="https://unpkg.com/css-neat-grid/dist/grid.min.css" rel="stylesheet">`
