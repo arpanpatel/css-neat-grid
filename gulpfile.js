@@ -32,7 +32,6 @@ const watchSource = function (done) {
 
 exports.default = series(sassTask);
 
-
 exports.watch = series(
 	exports.default,
 	watchSource

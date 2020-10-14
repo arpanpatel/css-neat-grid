@@ -1,5 +1,5 @@
-$grid-column-config: (columns: 12, responsive: false) !default;
-$grid-row-config: (rows: 12, responsive: false) !default;
+$grid-column-config: (columns: 12, responsive: true) !default;
+$grid-row-config: (rows: 12, responsive: true) !default;
 
 $gap: 1rem !default;
 $gaps: () !default;
